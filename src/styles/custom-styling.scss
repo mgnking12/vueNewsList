@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Pragati+Narrow|Questrial');
+@import url(https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+$pragati-font: 'Pragati Narrow';
+$questrial-font: 'Questrial';
+$total: 12;
+$baseFontSize: 14;
+@mixin addIcon($content: "\f0a9") {
+    content: $content;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+header {
+    width: 99.5%;
+    margin: 0 auto 30px;
+    background: #fff;
+    text-transform: uppercase;
+    font-family: $questrial-font;
+    text-align: left;
+    >div {
+        font-size: 15px;
+        padding: 10px 15px;
+        display: block;
+        font-weight: bold;
+        border-bottom: 2px solid #000;
+    }
+}
+
+.saatvaNews {
+    overflow: auto;
+    background: #ececec;
+    border: 2px solid #000;
+    .article {
+        .content {
+            background: #fff;
+            border: 1px solid #ccc;
+            width: 94%;
+            padding: 10px 20px;
+            h2 {
+                text-transform: uppercase;
+                text-align: center;
+                line-height: 38px;
+                font-size: 1.6em;
+                padding: 0 30px;
+                margin-top: 20px;
+                font-family: $pragati-font;
+                font-weight: bold;
+            }
+            img {
+                max-width: 100%;
+            }
+            #share {
+                text-align: right;
+                margin: 5px 0;
+                .twitter,
+                .facebook,
+                .linkedin {
+                    display: inline-block;
+                    text-decoration: none;
+                    font-size: 1.2em;
+                    margin-left: 5px;
+                }
+                .twitter {
+                    &:before {
+                        @include addIcon("\f099");
+                        color: #4e84bd;
+                    }
+                }
+                .facebook {
+                    &:before {
+                        @include addIcon("\f082");
+                        color: #4065b3;
+                    }
+                }
+                .linkedin {
+                    &:before {
+                        @include addIcon("\f09e");
+                        color: #fd6500;
+                    }
+                }
+                .mail {
+                    &:before {
+                        @include addIcon("\f199");
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+    button.cards {
+        background: #fff;
+        height: 120px;
+        display: block;
+        padding: 8% 20px;
+        border: solid #ccc;
+        border-width: 0 1px 1px;
+        font-size: .9em;
+        line-height: 20px;
+        width: 90%;
+        margin: 0 auto;
+        text-align: left;
+        font-weight: bold;
+        font-family: $pragati-font;
+        &:first-child {
+            border-width: 1px;
+        }
+        &:hover,
+        &.active {
+            color: #fff;
+            text-decoration: underline;
+        }
+        &.active {
+            background: #333;
+        }
+    }
+}

@@ -35,12 +35,15 @@ header {
     overflow: auto;
     background: #ececec;
     border: 2px solid #000;
+    text-align: left;
     .article {
         .content {
             background: #fff;
             border: 1px solid #ccc;
             width: 94%;
             padding: 10px 20px;
+            font-family: $pragati-font;
+            text-align: center;
             h2 {
                 text-transform: uppercase;
                 text-align: center;
@@ -89,6 +92,9 @@ header {
                         color: #000;
                     }
                 }
+            }
+            p {
+                text-align: left;
             }
         }
     }

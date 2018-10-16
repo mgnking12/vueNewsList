@@ -13,7 +13,7 @@
             <h2>{{ source.title }}</h2>
             <img class="img-fluid" v-bind:src="source.urlToImage" />
             <div id="share">
-                          <a class="mail" v-bind:href="mailHref" target="_blank"></a>
+                          <a class="mail" v-bind:href="mailHref"></a>
                           <a class="facebook" v-bind:href="facebookHref" target="_blank"></a>
                           <a class="twitter" v-bind:href="twitterHref" target="_blank"></a>
                           <a class="linkedin" v-bind:href="linkedinHref" target="_blank"></a>
@@ -38,7 +38,7 @@ export default {
       mailHref: '',
       twitterHref: '',
       facebookHref: '',
-      linkedinHref: ''
+      linkedinHref: '',
     }
   },
   methods: {
@@ -47,10 +47,9 @@ export default {
      for (var i=0; i<this.sources.length; i++) {
        if (this.sources[i].title == e.target.value) {
          this.source = this.sources[i];
-         
+         this.setupShare();
        }
      }
-     console.log(e.target.classList)
 
       var currentActive = document.getElementsByClassName("active");
       if(currentActive.length > 0){
@@ -60,20 +59,27 @@ export default {
 
      e.target.classList.add("active");
      this.$emit('sourceChanged', e.target.value);
+
+     this.showImage(this.source.urlToImage, e);
     },
     showImage: function(image, event){
-      this.backgroundImg= image;
+      var cards = document.querySelectorAll(".cards:not(.active)");
+      for (var i=0; i<cards.length; i++) {
+        cards[i].removeAttribute("style");
+     }
       event.target.setAttribute("style", "background: linear-gradient(rgba(20,20,20, .5), rgba(20,20,20, .5)), url(" + image + ") no-repeat center; background-size: cover")
     },
     hideImage: function(){
-      this.backgroundImg= "";
-      event.target.style.background = ''
+      var cards = document.querySelectorAll(".cards:not(.active)");
+      for (var i=0; i<cards.length; i++) {
+        cards[i].removeAttribute("style");
+     }
     },
     setupShare: function() { 
-      this.mailHref = 'mailto:?subject=Check this out!&body=' + this.currentPost.url;
-        this.twitterHref = 'https://twitter.com/share?url=' + this.currentPost.url;
-        this.facebookHref = 'http://www.facebook.com/sharer.php?u=' + this.currentPost.url;
-        this.linkedinHref = 'https://www.linkedin.com/shareArticle?mini=true&url=' + this.currentPost.url;
+      this.mailHref = 'mailto:?subject=Check this out!&body=' + this.source.url;
+        this.twitterHref = 'https://twitter.com/share?url=' + this.source.url;
+        this.facebookHref = 'http://www.facebook.com/sharer.php?u=' + this.source.url;
+        this.linkedinHref = 'https://www.linkedin.com/shareArticle?mini=true&url=' + this.source.url;
     },
   },
   created: function () {
